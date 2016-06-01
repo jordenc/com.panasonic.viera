@@ -1,0 +1,66 @@
+{
+    "id": "com.athom.hello",
+    "version": "0.0.1",
+    "compatibility": "*",
+    "name": {
+        "en": "Panasonic Viera SmartTV",
+        "nl": "Panasonic Viera SmartTV"
+    },
+    "description": {
+        "en": "Control your Panasonic Viera SmartTV",
+        "nl": "Bestuur je Panasonic Viera SmartTV"
+    },
+    "author": {
+        "name": "Chamid Media",
+        "email": "info@chamidmedia.nl"
+    },
+    "images": {
+      "large": "./assets/images/large.jpg",
+      "small": "./assets/images/small.jpg"
+    },
+    "category": "appliances",
+	"drivers": [
+        {
+            "id": "smarttv",
+            "name": {
+	        	"en": "Panasonic Viera SmartTV",
+	        	"nl": "Panasonic Viera SmartTV"  
+            },
+            "images": {
+              	"large": "drivers/smarttv/assets/images/large.jpg",
+			  	"small": "drivers/smarttv/assets/images/small.jpg"
+          	},
+            "class": "other",
+            "capabilities": [ "" ],
+            "pair": [
+                {
+                    "id": "start"
+                },
+                {
+                    "id": "list_devices",
+                    "template": "list_devices"
+                }
+            ],
+            "settings": [
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "General settings",
+                        "nl": "Algemene instellingen"
+                    },
+                    "children": [
+	                    {
+	                        "id": "ipaddress",
+	                        "type": "text",
+	                        "label": {
+	                            "en": "IP address",
+	                            "nl": "IP adres"
+	                        },
+	                        "value": "0.0.0.0"
+	                    }
+	                ]
+	            }
+	        ]
+        }
+    ]
+}
