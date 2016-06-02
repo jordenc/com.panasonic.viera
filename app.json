@@ -71,6 +71,26 @@
         }
     ],
     "flow": {
+	    "conditions": [
+		    {
+			    "id": "muted",
+			     "title": {
+				    "en": "TV !{{is|is not}} muted",
+				    "nl": "TV !{{is|is niet}} muted"
+			    },
+			    "args": [
+	              {
+	                "name": "device",
+	                "type": "device",
+	                "placeholder": {
+	                  "en": "Select SmartTV",
+	                  "nl": "Selecteer SmartTV"
+	                },
+		            "filter": "driver_id=smarttv"
+	              }
+	            ]
+		    }
+	    ],
 	    "actions": [
 	        {
 	            "id": "sendcommand",

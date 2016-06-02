@@ -306,6 +306,12 @@ Homey.manager('flow').on('action.setvolume', function (callback, args){
 	
 });
 
+Homey.manager('flow').on('condition.muted', function (callback, args) {
+
+	callback (null, tv[args.device.id].getMute());
+
+});
+
 
 Homey.manager('flow').on('action.sendcommand.key.autocomplete', function (callback, value) {
 	var SearchString = value.query;
