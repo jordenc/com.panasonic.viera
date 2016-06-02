@@ -38,7 +38,14 @@
                 },
                 {
                     "id": "list_devices",
-                    "template": "list_devices"
+                    "template": "list_devices",
+                    "navigation": {
+                        "next": "add_tv"
+                    }
+                },
+                {
+                    "id": "add_tv",
+                    "template": "add_devices"
                 }
             ],
             "settings": [

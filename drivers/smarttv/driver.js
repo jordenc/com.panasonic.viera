@@ -2,15 +2,21 @@ var address = '';
 var devices = [];
 var tempIP = '';
 
-/*
+var tv = [];
+
 var PanasonicViera = require('./panasonicviera');
 
-var tv = new PanasonicViera('<ip_address>');
-
+/*
 tv.send(PanasonicViera.POWER_TOGGLE);
 
 tv.setVolume(20);
 */
+
+function startsocket(device_id) {
+	
+	tv[device_id] = new PanasonicViera(device[device_id].settings.ipaddress);
+		
+}
 
 
 module.exports.settings = function( device_data, newSettingsObj, oldSettingsObj, changedKeysArr, callback ) {
@@ -42,6 +48,7 @@ module.exports.init = function(devices_data, callback) {
 	    module.exports.getSettings(device, function(err, settings){
 		    
 		    devices[device.id].settings = settings;
+		    startsocket(device.id);
 		    
 		});
 		
@@ -76,9 +83,14 @@ module.exports.pair = function (socket) {
 			},
 			settings: {
 				"ipaddress" 	: tempIP
-			}
+			},
+			capabilities: [
+	        	'volume_set'
+	        ]
 		}];
-
+		
+		startsocket(tempIP);
+		
 		callback (null, devices);
 
 	});
