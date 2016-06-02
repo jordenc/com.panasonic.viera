@@ -97,6 +97,34 @@
 		            "filter": "driver_id=smarttv"
 	              }
 	            ]
+	        },
+	        {
+	            "id": "setvolume",
+	            "title": {
+	                "en": "Set volume",
+	                "nl": "Stel volume in"
+	            },
+	            "args": [
+	              {
+	                "name": "volume",
+	                "type": "number",
+	                "min": 0,
+	                "max": 99,
+	                "placeholder": {
+	                   "en": "Target volume",
+	                   "nl": "Gewenst volume"
+	                }
+	              },
+	              {
+	                "name": "device",
+	                "type": "device",
+	                "placeholder": {
+	                  "en": "Select SmartTV",
+	                  "nl": "Selecteer SmartTV"
+	                },
+		            "filter": "driver_id=smarttv"
+	              }
+	            ]
 	        }
 	    ]
 	}

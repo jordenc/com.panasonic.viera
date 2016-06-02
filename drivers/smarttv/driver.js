@@ -290,6 +290,23 @@ Homey.manager('flow').on('action.sendcommand', function (callback, args) {
 	
 });
 
+Homey.manager('flow').on('action.setvolume', function (callback, args){
+	var targetVolume = args.volume;
+	
+	if (targetVolume > 100) {
+		
+		Homey.log ('Target Volume (' + targetVolume + ') is too high (> 100)');
+		callback ('Target Volume (' + targetVolume + ') is too high (> 100)', false);
+		
+	}
+	
+	Homey.log ('target volume=' + targetVolume);
+	
+	tv[args.device.id].setVolume(targetVolume);
+	
+});
+
+
 Homey.manager('flow').on('action.sendcommand.key.autocomplete', function (callback, value) {
 	var SearchString = value.query;
 	var items = searchForCommandsByValue( SearchString );
