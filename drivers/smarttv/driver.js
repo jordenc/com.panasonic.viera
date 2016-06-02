@@ -4,9 +4,9 @@ var tempIP = '';
 
 var tv = [];
 
-var PanasonicViera = require('./panasonicviera');
+var PanasonicViera = require('panasonicviera');
 	
-var PossibleKeys = [
+var allpossibleKeys = [
 	
 	{	Name: 'POWER',
 		friendlyName: 'Power off'
@@ -157,18 +157,36 @@ var PossibleKeys = [
 	},
 	{	Name: '3D',
 		friendlyName: '3D'
+	},
+	{	Name: 'HDMI1',
+		friendlyName: 'HDMI 1'
+	},
+	{	Name: 'HDMI2',
+		friendlyName: 'HDMI 2'
+	},
+	{	Name: 'HMDI3',
+		friendlyName: 'HDMI 3'
 	}
 ];
-/*
-tv.send(PanasonicViera.POWER_TOGGLE);
 
-tv.setVolume(20);
-*/
-
-function startsocket(device_id) {
+function startsocket(device_id, ipaddress) {
 	
-	tv[device_id] = new PanasonicViera(device[device_id].settings.ipaddress);
+	Homey.log('Starting socket for tv[' + device_id + '] -> ' + ipaddress);
+	tv[device_id] = new PanasonicViera(ipaddress);
 		
+}
+
+function sendcommand (device_id, command, callback) {
+	
+	tv[device_id].sendKey(command, 'ONOFF');
+	
+	callback (null, true);
+	/*
+	tv.send(PanasonicViera.POWER_TOGGLE);
+	
+	tv.setVolume(20);
+	*/
+	
 }
 
 
@@ -201,7 +219,7 @@ module.exports.init = function(devices_data, callback) {
 	    module.exports.getSettings(device, function(err, settings){
 		    
 		    devices[device.id].settings = settings;
-		    startsocket(device.id);
+		    startsocket(device.id, settings.ipaddress);
 		    
 		});
 		
@@ -266,17 +284,26 @@ module.exports.pair = function (socket) {
 }
 
 
+Homey.manager('flow').on('action.sendcommand', function (callback, args) {
+	
+	sendcommand (args.device.id, args.key.Name, callback);
+	
+});
 
-
+Homey.manager('flow').on('action.sendcommand.key.autocomplete', function (callback, value) {
+	var SearchString = value.query;
+	var items = searchForCommandsByValue( SearchString );
+	callback(null, items);
+});
 
 
 function searchForCommandsByValue (value) {
 	var possibleKeys = allpossibleKeys;
 	var tempItems = [];
 	for (var i = 0; i < possibleKeys.length; i++) {
-		var tempInput = possibleKeys[i];
-		if ( tempInput.friendlyName.toLowerCase().indexOf(value.toLowerCase()) >= 0 ) {
-			tempItems.push({ icon: "", name: tempInput.friendlyName, inputName: tempInput.inputName });
+		var temp = possibleKeys[i];
+		if ( temp.friendlyName.toLowerCase().indexOf(value.toLowerCase()) >= 0 ) {
+			tempItems.push({ icon: "", name: temp.friendlyName, Name: temp.Name });
 		}
 	}
 	return tempItems;

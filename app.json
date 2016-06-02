@@ -1,5 +1,5 @@
 {
-    "id": "com.athom.hello",
+    "id": "com.panasonic.viera",
     "version": "0.0.1",
     "compatibility": "*",
     "name": {
@@ -69,5 +69,35 @@
 	            }
 	        ]
         }
-    ]
+    ],
+    "flow": {
+	    "actions": [
+	        {
+	            "id": "sendcommand",
+	            "title": {
+	                "en": "Send command",
+	                "nl": "Stuur commando"
+	            },
+	            "args": [
+	              {
+	                "name": "key",
+	                "type": "autocomplete",
+	                "placeholder": {
+	                  "en": "Key",
+	                  "nl": "Toets"
+	                 }
+	              },
+	              {
+	                "name": "device",
+	                "type": "device",
+	                "placeholder": {
+	                  "en": "Select SmartTV",
+	                  "nl": "Selecteer SmartTV"
+	                },
+		            "filter": "driver_id=smarttv"
+	              }
+	            ]
+	        }
+	    ]
+	}
 }
