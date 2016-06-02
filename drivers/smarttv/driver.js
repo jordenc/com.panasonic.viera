@@ -5,7 +5,160 @@ var tempIP = '';
 var tv = [];
 
 var PanasonicViera = require('./panasonicviera');
-
+	
+var PossibleKeys = [
+	
+	{	Name: 'POWER',
+		friendlyName: 'Power off'
+	},
+	{	Name: 'CH_DOWN',
+		friendlyName: 'Channel down'
+	},
+	{	Name: 'CH_UP',
+		friendlyName: 'Channel up'
+	},
+	{	Name: 'VOLUP',
+		friendlyName: 'Volume up'
+	},
+	{	Name: 'VOLDOWN',
+		friendlyName: 'Volume down'
+	},
+	{	Name: 'MUTE',
+		friendlyName: '(Un)Mute'
+	},
+	{	Name: 'TV',
+		friendlyName: 'TV'
+	},
+	{	Name: 'INTERNET',
+		friendlyName: 'Internet'
+	},
+	{	Name: 'CHG_INPUT',
+		friendlyName: 'Change input'
+	},
+	{	Name: 'SD_CARD',
+		friendlyName: 'SD Card'
+	},
+	{	Name: 'D1',
+		friendlyName: 'Number 1'
+	},
+	{	Name: 'D2',
+		friendlyName: 'Number 2'
+	},
+	{	Name: 'D3',
+		friendlyName: 'Number 3'
+	},
+	{	Name: 'D4',
+		friendlyName: 'Number 4'
+	},
+	{	Name: 'D5',
+		friendlyName: 'Number 5'
+	},
+	{	Name: 'D6',
+		friendlyName: 'Number 6'
+	},
+	{	Name: 'D7',
+		friendlyName: 'Number 7'
+	},
+	{	Name: 'D8',
+		friendlyName: 'Number 8'
+	},
+	{	Name: 'D9',
+		friendlyName: 'Number 9'
+	},
+	{	Name: 'D0',
+		friendlyName: 'Number 0'
+	},
+	{	Name: 'MENU',
+		friendlyName: 'Menu'
+	},
+	{	Name: 'SUBMENU',
+		friendlyName: 'Submenu'
+	},
+	{	Name: 'RETURN',
+		friendlyName: 'Return'
+	},
+	{	Name: 'ENTER',
+		friendlyName: 'Enter'
+	},
+	{	Name: 'RIGHT',
+		friendlyName: 'Right'
+	},
+	{	Name: 'LEFT',
+		friendlyName: 'Left'
+	},
+	{	Name: 'UP',
+		friendlyName: 'Up'
+	},
+	{	Name: 'DOWN',
+		friendlyName: 'Down'
+	},
+	{	Name: 'DISP_MODE',
+		friendlyName: 'Display mode'
+	},
+	{	Name: 'CANCEL',
+		friendlyName: 'Cancel'
+	},
+	{	Name: 'INDEX',
+		friendlyName: 'Index'
+	},
+	{	Name: 'RED',
+		friendlyName: 'Red'
+	},
+	{	Name: 'GREEN',
+		friendlyName: 'Green'
+	},
+	{	Name: 'YELLOW',
+		friendlyName: 'Yellow'
+	},
+	{	Name: 'BLUE',
+		friendlyName: 'Blue'
+	},
+	{	Name: 'EPG',
+		friendlyName: 'TV Guide'
+	},
+	{	Name: 'TEXT',
+		friendlyName: 'Teletext'
+	},
+	{	Name: 'INFO',
+		friendlyName: 'Info'
+	},
+	{	Name: 'REW',
+		friendlyName: 'Rewind'
+	},
+	{	Name: 'PLAY',
+		friendlyName: 'Play'
+	},
+	{	Name: 'FF',
+		friendlyName: 'Fast forward'
+	},
+	{	Name: 'SKIP_PREV',
+		friendlyName: 'Skip previous'
+	},
+	{	Name: 'PAUSE',
+		friendlyName: 'Pause'
+	},
+	{	Name: 'SKIP_NEXT',
+		friendlyName: 'Skip next'
+	},
+	{	Name: 'STOP',
+		friendlyName: 'Stop'
+	},
+	{	Name: 'REC',
+		friendlyName: 'Record'
+	},
+	{	Name: 'VTOOLS',
+		friendlyName: 'VTOOLS'
+	},
+	{	Name: 'VIERA_LINK',
+		friendlyName: 'VIERA_LINK'
+	},
+	{	Name: 'R_TUNE',
+		friendlyName: 'R-TUNE'
+	},
+	{	Name: '3D',
+		friendlyName: '3D'
+	}
+];
 /*
 tv.send(PanasonicViera.POWER_TOGGLE);
 
