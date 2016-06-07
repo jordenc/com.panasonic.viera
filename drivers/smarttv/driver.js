@@ -164,8 +164,11 @@ var allpossibleKeys = [
 	{	Name: 'HDMI2',
 		friendlyName: 'HDMI 2'
 	},
-	{	Name: 'HMDI3',
+	{	Name: 'HDMI3',
 		friendlyName: 'HDMI 3'
+	},
+	{	Name: 'HDMI4',
+		friendlyName: 'HDMI 4'
 	}
 ];
 
