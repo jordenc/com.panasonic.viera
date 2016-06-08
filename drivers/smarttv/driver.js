@@ -311,8 +311,14 @@ Homey.manager('flow').on('action.setvolume', function (callback, args){
 
 Homey.manager('flow').on('condition.muted', function (callback, args) {
 
-	callback (null, tv[args.device.id].getMute());
-
+	tv[args.device.id].getMute(function (status) {
+		
+		Homey.log('STATUS GETMUTE: ' + JSON.stringify(status));
+		
+		callback (null, true);
+		
+	});
+	
 });
 
 
