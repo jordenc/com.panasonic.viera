@@ -315,7 +315,7 @@ Homey.manager('flow').on('condition.muted', function (callback, args) {
 		
 		Homey.log('STATUS GETMUTE: ' + JSON.stringify(status));
 		
-		callback (null, true);
+		callback (null, status);
 		
 	});
 	
