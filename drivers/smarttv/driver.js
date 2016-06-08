@@ -263,7 +263,7 @@ module.exports.pair = function (socket) {
 	        ]
 		}];
 		
-		startsocket(tempIP);
+		startsocket(tempIP, tempIP);
 		
 		callback (null, devices);
 
