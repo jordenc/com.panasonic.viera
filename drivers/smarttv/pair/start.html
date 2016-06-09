@@ -21,6 +21,23 @@ Homey.on('continue', function( success, callback ){
 
 })
 
+Homey.emit('discover', {}, function (err, result) {
+	
+	console.log('result');
+	
+});
+
+Homey.on('found', function(ip, model) {
+	
+	if (ip) {
+		$('#Name').val(model);
+		$('#ipAddress').val(ip);
+	}
+	document.getElementById('discovery').style.display = 'none';
+	document.getElementById('manualpair').style.display = 'block';
+	
+});
+
 function saveSettings () {
 
 	// variables
@@ -68,6 +85,10 @@ function saveSettings () {
 			<tr>
 				<td style="width:100px;" data-i18n="pair.start.ipAddress">IP</td>
 				<td><input id="ipAddress" type="text" value="" placeholder="192.168.1.123"/></td>
+			</tr>
+			<tr>
+				<td style="width:100px;" data-i18n="pair.start.name">Name</td>
+				<td><input id="Name" type="text" value="" placeholder=""/></td>
 			</tr>
 		</table>
 

@@ -268,6 +268,87 @@ module.exports.pair = function (socket) {
 		callback (null, devices);
 
 	});
+	
+	socket.on('discover', function (data, callback) {
+		
+		var findViera = function ( findName, findModel,  discovercallback ) {
+		    var dgram       = require ( "dgram" ),
+		        socket      = dgram.createSocket ( 'udp4' ),
+		        findFlag    = false;
+		    
+		    socket.bind ();
+		
+		    socket.on ( 'listening', function () {
+		        socket.setBroadcast ( true );
+		        socket.setMulticastTTL ( 16 );
+		
+		        var udpSend = new Buffer (  "M-SEARCH * HTTP/1.1\r\n" +
+		                                    "HOST: 239.255.255.250:1900\r\n" +
+		                                    "MAN: \"ssdp:discover\"\r\n" +
+		                                    "MX: 5\r\n" +
+		                                    "ST: ssdp:all\r\n\r\n" );
+		
+		        socket.send ( udpSend, 0, udpSend.length, 1900, '239.255.255.250', function () {
+		            setTimeout ( function () { socket.emit ( 'found' ) }, 5000 );
+		        });
+		    });
+		
+		    socket.on ( 'message', function ( msg, rinfo ) {
+		        var http        = require ( 'http' ),
+		            myRegIp     = new RegExp ( '\/\/(.*?):' ).exec( msg ),
+		            myRegHttp   = new RegExp ( 'LOCATION:(.*$)', 'mi' ).exec( msg );
+		
+		        if ( ! myRegHttp ) { return }
+		
+		        var req = http.get ( myRegHttp[1], function ( res ) {
+		            res.setEncoding ( 'utf-8' );
+		
+		            res.on ( 'data', function ( chunk ) {
+			            
+			            if ( chunk.search ( findModel ) != -1 && chunk.search ( findName ) != -1 ) {
+				            
+				            var text = JSON.stringify (chunk);
+							var model = text.match(/<friendlyName>(.*)<\/friendlyName>/)[1];
+				            
+		                    setTimeout( function() { socket.emit ( 'autodetect', myRegIp[1], model ) }, 100 );
+		                }             
+		            });
+		
+		            res.on ( 'error', function ( err ) { discovercallback ( 'Request error : ' + err.message ) });
+		        });
+		    });
+		
+		    socket.once ( 'autodetect', function ( retIP, model ) {
+		        discovercallback (false, retIP, model );
+		        findFlag = true;
+		        socket.close();
+		    });
+		
+		    socket.on ( 'notfind', function () {
+		        if ( findFlag == false ) {
+		            discovercallback ('No Panasonic TV found');
+		            socket.close();
+		        }
+		    });
+		
+		    socket.on ( 'error', function ( err ) { discovercallback ( 'Socket error : ' + err.message ) });
+		};
+		
+		findViera ( 'Panasonic', 'DTV', function (error, RetIP, RetModel ) {
+			if (error) {
+				Homey.log('error discovery: ' + error);
+				
+			} else {
+				
+				Homey.log('Discovery found: ' + RetIP + ' / ' + RetModel);
+				
+				socket.emit ('found', RetIP, RetModel);
+			
+			}
+			
+		});
+		
+	});
 
 	// this is called when the user presses save settings button in start.html
 	socket.on('get_devices', function (data, callback) {
