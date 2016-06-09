@@ -1,6 +1,6 @@
 var address = '';
 var devices = [];
-var tempIP = '';
+var tempIP = '', tempName = '';
 
 var tv = [];
 
@@ -248,10 +248,10 @@ module.exports.pair = function (socket) {
 	// which happens when you use the template `list_devices`
 	socket.on('list_devices', function (data, callback) {
 
-		Homey.log("Panasonic Viera app - list_devices tempIP is " + tempIP);
+		Homey.log("Panasonic Viera app - list_devices tempIP is " + tempIP + ' / name = ' + tempName);
 		
 		var devices = [{
-			name				: tempIP,
+			name				: tempName,
 			data: {
 				id				: tempIP,
 			},
@@ -357,7 +357,8 @@ module.exports.pair = function (socket) {
 
 		// Set passed pair settings in variables
 		tempIP = data.ipaddress;
-		Homey.log ( "Panasonic Viera app - got get_devices from front-end, tempIP =" + tempIP );
+		tempName = data.name;
+		Homey.log ( "Panasonic Viera app - got get_devices from front-end, tempIP =" + tempIP + ' / name = ' + tempName );
 
 		// assume IP is OK and continue
 		socket.emit ('continue', null);

@@ -8,7 +8,7 @@
 			"required": "IP adres is verplicht.",
 			"ipAddress": "IP adres",
 			"saveSettings": "Gegevens opslaan",
-			"discovery": "Zoeken naar apparaten, een moment geduld a.u.b."
+			"discovery": "Zoeken naar apparaten, een moment geduld a.u.b. (zorg dat uw televisie aan staat)"
 		}
 	}	
 }

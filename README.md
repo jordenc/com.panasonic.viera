@@ -3,6 +3,8 @@ Control Panasonic Viera SmartTV with Homey
 
 **Want to show your appreciation for this app? A donation is possible via http://www.d2c.nl **
 
+When you add your TV, please make sure the TV is on and has been for at least a minute (otherwise the built in webserver might not be detectable).
+
 App contains the following action cards:
 - Send command (contains all keys you can send to the TV)
 - Set volume

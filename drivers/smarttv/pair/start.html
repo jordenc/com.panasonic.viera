@@ -33,6 +33,7 @@ Homey.on('found', function(ip, model) {
 		$('#Name').val(model);
 		$('#ipAddress').val(ip);
 	}
+	alert('ip = ' + ip + ' / name = ' + model);
 	document.getElementById('discovery').style.display = 'none';
 	document.getElementById('manualpair').style.display = 'block';
 	
@@ -42,6 +43,7 @@ function saveSettings () {
 
 	// variables
 	var inputIPAddress = document.getElementById( 'ipAddress' ).value;
+	var Name = document.getElementById( 'Name' ).value;
 	
 	// If required values are filled in
 	// FIXME: should check if this is a real IPv4 address
@@ -49,6 +51,7 @@ function saveSettings () {
 
 		// Build data array
 		var data = {
+			name: Name,
 			ipaddress: inputIPAddress
 		};
 

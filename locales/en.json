@@ -8,7 +8,7 @@
 			"required": "IP address is a required value.",
 			"ipAddress": "IP address",
 			"saveSettings": "Save settings",
-			"discovery": "Searching for devices, one moment please"
+			"discovery": "Searching for devices, one moment please... (make sure your TV is on)"
 		}
   	}
 }
