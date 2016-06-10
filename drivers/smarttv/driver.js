@@ -312,7 +312,7 @@ module.exports.pair = function (socket) {
 				            var text = JSON.stringify (chunk);
 							var model = text.match(/<friendlyName>(.*)<\/friendlyName>/)[1];
 				            
-		                    setTimeout( function() { discoversocket.emit ( 'autodetect', myRegIp[1], model ) }, 100 );
+		                    setTimeout( function() { discoversocket.emit ( 'autodetect', {ip: myRegIp[1], model: model} ) }, 100 );
 		                }             
 		            });
 		
@@ -320,8 +320,11 @@ module.exports.pair = function (socket) {
 		        });
 		    });
 		
-		    discoversocket.once ( 'autodetect', function ( retIP, model ) {
-		        discovercallback (false, retIP, model );
+		    discoversocket.once ( 'autodetect', function ( data ) {
+			    
+			    Homey.log('[AUTODETECT data] ' + JSON.stringify (data));
+			    //retIP, model
+		        discovercallback (false, data.ip, data.model );
 		        findFlag = true;
 		        discoversocket.close();
 		    });
