@@ -324,7 +324,7 @@ module.exports.pair = function (socket) {
 			    
 			    Homey.log('[AUTODETECT data] ' + JSON.stringify (data));
 			    //retIP, model
-		        discovercallback (false, data.ip, data.model );
+		        discovercallback (false, data);
 		        findFlag = true;
 		        discoversocket.close();
 		    });
@@ -347,7 +347,7 @@ module.exports.pair = function (socket) {
 				
 				Homey.log('Discovery found: ' + RetIP + ' / ' + RetModel);
 				
-				socket.emit ('found', RetIP, RetModel);
+				socket.emit ('found', {ip: RetIP, model: RetModel});
 			
 			}
 			
