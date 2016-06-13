@@ -33,7 +33,6 @@ Homey.on('found', function(data) {
 		$('#Name').val(data.model);
 		$('#ipAddress').val(data.ip);
 	}
-	alert('ip = ' + data.ip + ' / name = ' + data.model);
 	document.getElementById('discovery').style.display = 'none';
 	document.getElementById('manualpair').style.display = 'block';
 	
