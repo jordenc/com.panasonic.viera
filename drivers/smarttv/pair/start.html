@@ -27,13 +27,13 @@ Homey.emit('discover', {}, function (err, result) {
 	
 });
 
-Homey.on('found', function(ip, model) {
+Homey.on('found', function(data) {
 	
-	if (ip) {
-		$('#Name').val(model);
-		$('#ipAddress').val(ip);
+	if (data.ip) {
+		$('#Name').val(data.model);
+		$('#ipAddress').val(data.ip);
 	}
-	alert('ip = ' + ip + ' / name = ' + model);
+	alert('ip = ' + data.ip + ' / name = ' + data.model);
 	document.getElementById('discovery').style.display = 'none';
 	document.getElementById('manualpair').style.display = 'block';
 	

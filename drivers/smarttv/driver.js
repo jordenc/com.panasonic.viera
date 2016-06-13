@@ -339,15 +339,15 @@ module.exports.pair = function (socket) {
 		    discoversocket.on ( 'error', function ( err ) { discovercallback ( 'Socket error : ' + err.message ) });
 		};
 		
-		findViera ( 'Panasonic', 'DTV', function (error, RetIP, RetModel ) {
+		findViera ( 'Panasonic', 'DTV', function (error, data ) {
 			if (error) {
 				Homey.log('error discovery: ' + error);
 				
 			} else {
 				
-				Homey.log('Discovery found: ' + RetIP + ' / ' + RetModel);
+				Homey.log('Discovery found: ' + data.ip + ' / ' + data.model);
 				
-				socket.emit ('found', {ip: RetIP, model: RetModel});
+				socket.emit ('found', data);
 			
 			}
 			
