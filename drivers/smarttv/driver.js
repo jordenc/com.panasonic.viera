@@ -184,11 +184,6 @@ function sendcommand (device_id, command, callback) {
 	tv[device_id].sendKey(command, 'ONOFF');
 	
 	callback (null, true);
-	/*
-	tv.send(PanasonicViera.POWER_TOGGLE);
-	
-	tv.setVolume(20);
-	*/
 	
 }
 
@@ -405,6 +400,37 @@ Homey.manager('flow').on('condition.muted', function (callback, args) {
 		callback (null, status);
 		
 	});
+	
+});
+
+Homey.manager('flow').on('condition.isOn', function (callback, args) {
+
+	var http = require('http');
+	
+	var post_options = {
+		host: devices[args.device.id].data.ipaddress,
+		port: '55000',
+		path: url,
+		method: 'POST',
+		headers: {
+			'Content-Length': command_str.length,
+			'Content-Type': 'text/xml; charset="utf-8"',
+			'User-Agent': 'net.thlabs.nodecontrol',
+			'SOAPACTION': '"urn:'+urn+'#'+action+'"'
+		}
+	}
+	
+	var req = http.request(post_options, function(res) {
+		Homey.log('STATUS: ' + res.statusCode);
+		Homey.log('HEADERS: ' + JSON.stringify(res.headers));
+	});
+	req.on('error', function(e) {
+		Homey.log('error: ' + e.message);
+		Homey.log(e);
+	});
+	req.end();
+	
+	callback (null, false);
 	
 });
 

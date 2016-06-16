@@ -1,6 +1,6 @@
 {
     "id": "com.panasonic.viera",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "compatibility": "*",
     "name": {
         "en": "Panasonic Viera SmartTV",
@@ -77,6 +77,24 @@
 			     "title": {
 				    "en": "TV !{{is|is not}} muted",
 				    "nl": "TV !{{is|is niet}} muted"
+			    },
+			    "args": [
+	              {
+	                "name": "device",
+	                "type": "device",
+	                "placeholder": {
+	                  "en": "Select SmartTV",
+	                  "nl": "Selecteer SmartTV"
+	                },
+		            "filter": "driver_id=smarttv"
+	              }
+	            ]
+		    },
+		    {
+			    "id": "isOn",
+			     "title": {
+				    "en": "TV !{{is|is not}} on",
+				    "nl": "TV !{{staat|staat niet}} aan"
 			    },
 			    "args": [
 	              {
