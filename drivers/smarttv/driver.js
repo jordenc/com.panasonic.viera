@@ -420,6 +420,10 @@ Homey.manager('flow').on('condition.isOn', function (callback, args) {
 		}
 	}
 	
+	req.setTimeout(3000, function(){
+    	this.abort();
+	}.bind(req);
+
 	var req = http.request(post_options, function(res) {
 		Homey.log('STATUS: ' + res.statusCode);
 		Homey.log('HEADERS: ' + JSON.stringify(res.headers));
