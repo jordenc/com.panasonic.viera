@@ -421,7 +421,7 @@ Homey.manager('flow').on('condition.isOn', function (callback, args) {
 		Homey.log('STATUS: ' + res.statusCode);
 		Homey.log('HEADERS: ' + JSON.stringify(res.headers));
 		
-		if (res.statusCode == 200) {
+		if (res.statusCode == 403) {
 			callback (null, true);
 		} else {
 			callback (null, false);
