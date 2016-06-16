@@ -408,7 +408,7 @@ Homey.manager('flow').on('condition.isOn', function (callback, args) {
 	var http = require('http');
 	
 	var post_options = {
-		host: devices[args.device.id].data.ipaddress,
+		host: devices[args.device.id].settings.ipaddress,
 		port: '55000',
 		path: url,
 		method: 'POST',
