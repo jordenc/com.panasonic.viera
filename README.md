@@ -21,6 +21,7 @@ Big thanks to https://github.com/THLabs/node-panasonic-viera
 
 **Version 0.3.0:**
 - Added 'TV is on' condition card
+- Fixed bug on pairing timeout
 
 **Version 0.2.0:**
 - Added discovery of device

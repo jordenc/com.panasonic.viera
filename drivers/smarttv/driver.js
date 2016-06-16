@@ -245,7 +245,7 @@ module.exports.pair = function (socket) {
 
 		Homey.log("Panasonic Viera app - list_devices tempIP is " + tempIP + ' / name = ' + tempName);
 		
-		var devices = [{
+		var new_devices = [{
 			name				: tempName,
 			data: {
 				id				: tempIP,
@@ -258,9 +258,11 @@ module.exports.pair = function (socket) {
 	        ]
 		}];
 		
+		devices[tempIP] = new_devices;
+		
 		startsocket(tempIP, tempIP);
 		
-		callback (null, devices);
+		callback (null, new_devices);
 
 	});
 	
@@ -286,7 +288,7 @@ module.exports.pair = function (socket) {
 		                                    "ST: ssdp:all\r\n\r\n" );
 		
 		        discoversocket.send ( udpSend, 0, udpSend.length, 1900, '239.255.255.250', function () {
-		            setTimeout ( function () { socket.emit ( 'found' ) }, 5000 );
+		            setTimeout ( function () { Homey.log('timeout'); discoversocket.emit ( 'notfind' ) }, 5000 );
 		        });
 		    });
 		
@@ -328,6 +330,7 @@ module.exports.pair = function (socket) {
 		        if ( findFlag == false ) {
 		            discovercallback ('No Panasonic TV found');
 		            discoversocket.close();
+		            socket.emit ('found', false);
 		        }
 		    });
 		
@@ -410,31 +413,34 @@ Homey.manager('flow').on('condition.isOn', function (callback, args) {
 	var post_options = {
 		host: devices[args.device.id].settings.ipaddress,
 		port: '55000',
-		path: url,
-		method: 'POST',
-		headers: {
-			'Content-Length': command_str.length,
-			'Content-Type': 'text/xml; charset="utf-8"',
-			'User-Agent': 'net.thlabs.nodecontrol',
-			'SOAPACTION': '"urn:'+urn+'#'+action+'"'
-		}
+		path: '/nrc/control_0',
+		method: 'GET'
 	}
-	
-	req.setTimeout(3000, function(){
-    	this.abort();
-	});
 
 	var req = http.request(post_options, function(res) {
 		Homey.log('STATUS: ' + res.statusCode);
 		Homey.log('HEADERS: ' + JSON.stringify(res.headers));
+		
+		if (res.statusCode == 200) {
+			callback (null, true);
+		} else {
+			callback (null, false);
+		}
 	});
+	
+	
+	req.setTimeout(3000, function(){
+    	this.abort();
+	});
+	
 	req.on('error', function(e) {
 		Homey.log('error: ' + e.message);
 		Homey.log(e);
+		callback (null, false);
 	});
 	req.end();
 	
-	callback (null, false);
+	
 	
 });
 
