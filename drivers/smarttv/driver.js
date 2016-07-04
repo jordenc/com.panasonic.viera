@@ -315,6 +315,8 @@ module.exports.pair = function (socket) {
 		
 		            res.on ( 'error', function ( err ) { discovercallback ( 'Request error : ' + err.message ) });
 		        });
+		        
+		        req.end();
 		    });
 		
 		    discoversocket.once ( 'autodetect', function ( data ) {
