@@ -1,14 +1,15 @@
 {
 	"pair": {
 		"start": {
-			"intro": "Enter the IP address of your Panasonic Viera TV",
+			"intro": "Enter the IP address of your Panasonic Viera TV, or try automatisch discovery.",
 			"name": "Name",
 			"title": "Finding device...",
 			"error": "An error has occurred.",
 			"required": "IP address is a required value.",
 			"ipAddress": "IP address",
 			"saveSettings": "Save settings",
-			"discovery": "Searching for devices, one moment please... (make sure your TV is on)"
+			"discovery": "Searching for devices, one moment please... (make sure your TV is on)",
+			"startdiscovery": "Start discovery"
 		}
   	}
 }

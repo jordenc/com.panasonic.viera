@@ -21,10 +21,15 @@ Homey.on('continue', function( success, callback ){
 
 })
 
-Homey.emit('discover', {}, function (err, result) {
+$('#startdiscovery').on('click', function() {
 	
-	console.log('result');
+	document.getElementById('discovery').style.display = 'block';
 	
+	Homey.emit('discover', {}, function (err, result) {
+		
+		console.log('result');
+		
+	});
 });
 
 Homey.on('found', function(data) {
@@ -33,8 +38,8 @@ Homey.on('found', function(data) {
 		$('#Name').val(data.model);
 		$('#ipAddress').val(data.ip);
 	}
-	document.getElementById('discovery').style.display = 'none';
-	document.getElementById('manualpair').style.display = 'block';
+	//document.getElementById('discovery').style.display = 'none';
+	//document.getElementById('manualpair').style.display = 'block';
 	
 });
 
@@ -69,10 +74,12 @@ function saveSettings () {
 
 </script>
 
-	<div id="discovery">
+	<div id="discovery" style="display: none">
 		<p data-i18n="pair.start.discovery"></p>
 	</div>
-	<div id="manualpair" style='display: none'>
+	<div id="manualpair">
+		
+		<button class="button" id="startdiscovery" data-i18n="pair.start.startdiscovery">Start discovery</button>
 		
 	    <p data-i18n="pair.start.intro">enter IP address</p>
 	

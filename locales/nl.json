@@ -1,14 +1,15 @@
 {
 	"pair": {
 		"start": {
-			"intro": "Vul het IP-adres van uw Panasonic Viera TV in.",
+			"intro": "Vul het IP-adres van uw Panasonic Viera TV in, of probeer automatisch zoeken.",
 			"name": "Naam",
 			"title": "Apparaat zoeken...",
 			"error": "Er is een fout opgetreden.",
 			"required": "IP adres is verplicht.",
 			"ipAddress": "IP adres",
 			"saveSettings": "Gegevens opslaan",
-			"discovery": "Zoeken naar apparaten, een moment geduld a.u.b. (zorg dat uw televisie aan staat)"
+			"discovery": "Zoeken naar apparaten, een moment geduld a.u.b. (zorg dat uw televisie aan staat)",
+			"startdiscovery": "Automatisch zoeken"
 		}
 	}	
 }
