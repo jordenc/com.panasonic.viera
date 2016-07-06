@@ -1,6 +1,6 @@
 {
     "id": "com.panasonic.viera",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "compatibility": "*",
     "name": {
         "en": "Panasonic Viera SmartTV",

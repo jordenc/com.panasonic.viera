@@ -19,6 +19,9 @@ Otherwise, all functions won't work until you turn on the TV using your remote.
 
 Big thanks to https://github.com/THLabs/node-panasonic-viera
 
+**Version 0.3.1:**
+- Automatic discovery is now optional
+
 **Version 0.3.0:**
 - Added 'TV is on' condition card
 - Fixed bug on pairing timeout
