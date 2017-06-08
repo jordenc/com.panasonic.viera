@@ -1,6 +1,6 @@
 {
     "id": "com.panasonic.viera",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "compatibility": "*",
     "name": {
         "en": "Panasonic Viera SmartTV",
@@ -120,6 +120,32 @@
 	              {
 	                "name": "key",
 	                "type": "autocomplete",
+	                "placeholder": {
+	                  "en": "Key",
+	                  "nl": "Toets"
+	                 }
+	              },
+	              {
+	                "name": "device",
+	                "type": "device",
+	                "placeholder": {
+	                  "en": "Select SmartTV",
+	                  "nl": "Selecteer SmartTV"
+	                },
+		            "filter": "driver_id=smarttv"
+	              }
+	            ]
+	        },
+	        {
+	            "id": "sendcommand",
+	            "title": {
+	                "en": "Send command (manual)",
+	                "nl": "Stuur commando (handmatig)"
+	            },
+	            "args": [
+	              {
+	                "name": "key",
+	                "type": "text",
 	                "placeholder": {
 	                  "en": "Key",
 	                  "nl": "Toets"
