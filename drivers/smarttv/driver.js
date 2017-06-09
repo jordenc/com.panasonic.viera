@@ -187,6 +187,14 @@ function sendcommand (device_id, command, callback) {
 	
 }
 
+function sendcommandManual (device_id, command, callback) {
+	
+	tv[device_id].sendKey(command, 'ONOFF');
+	
+	callback (null, true);
+	
+}
+
 
 module.exports.settings = function( device_data, newSettingsObj, oldSettingsObj, changedKeysArr, callback ) {
 
