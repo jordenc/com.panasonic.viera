@@ -1,6 +1,6 @@
 {
     "id": "com.panasonic.viera",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "compatibility": "*",
     "name": {
         "en": "Panasonic Viera SmartTV",
@@ -30,7 +30,7 @@
               	"large": "drivers/smarttv/assets/images/large.jpg",
 			  	"small": "drivers/smarttv/assets/images/small.jpg"
           	},
-            "class": "other",
+            "class": "tv",
             "capabilities": [],
             "pair": [
                 {

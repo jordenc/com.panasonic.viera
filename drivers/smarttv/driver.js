@@ -187,15 +187,6 @@ function sendcommand (device_id, command, callback) {
 	
 }
 
-function sendcommandManual (device_id, command, callback) {
-	
-	tv[device_id].sendKey(command, 'ONOFF');
-	
-	callback (null, true);
-	
-}
-
-
 module.exports.settings = function( device_data, newSettingsObj, oldSettingsObj, changedKeysArr, callback ) {
 
     Homey.log ('Changed settings: ' + JSON.stringify(device_data) + ' / ' + JSON.stringify(newSettingsObj) + ' / old = ' + JSON.stringify(oldSettingsObj));
@@ -385,6 +376,12 @@ module.exports.pair = function (socket) {
 Homey.manager('flow').on('action.sendcommand', function (callback, args) {
 	
 	sendcommand (args.device.id, args.key.Name, callback);
+	
+});
+
+Homey.manager('flow').on('action.sendcommandManual', function (callback, args) {
+	
+	sendcommand (args.device.id, args.key, callback);
 	
 });
 

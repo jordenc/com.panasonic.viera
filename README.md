@@ -19,8 +19,9 @@ Otherwise, all functions won't work until you turn on the TV using your remote.
 
 Big thanks to https://github.com/THLabs/node-panasonic-viera
 
-**Version 0.3.3:**
+**Version 0.3.4:**
 - Added a "Send command (Manual)" action card to enable dragging tokens into it
+- Added devices to "TV" class to enable easier automatic speech integration
 
 **Version 0.3.2:**
 - Fixed small bug causing app not to run on homey firmware 0.9.1
